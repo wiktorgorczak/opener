@@ -9,13 +9,15 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
+    "rsuite": "^5.3.0",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "stop": "pkill --signal SIGINT myApp"
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +36,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/helper-compilation-targets": "^7.16.3"
   }
 }

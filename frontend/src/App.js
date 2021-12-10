@@ -1,24 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { ReactComponent as Icon} from './components/uploadIcon.svg';
+import { Container, Header, Footer, Progress, Button } from 'rsuite'
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container className="mainContainer" align="center">
+      <Header className="mainHeader">
+        <h2>Opener.gov</h2>
+      </Header>
+      <Container>
+        <Icon className="uploadIcon"/>
+      </Container>
+      <Container>
+        <input type="file"/>
+        <br/>
+        <Button>
+          Upload!
+        </Button>
+      </Container>
+      <Container>
+        <Progress.Line />
+      </Container>
+        <Footer>AUUUUU</Footer>
+    </Container>
   );
 }
 
