@@ -6,9 +6,3 @@ services:
       - "8111:8080"
     volumes:
       - ./target/opener-0.0.1-SNAPSHOT.war:/opt/opener.war:ro
-  frontend:
-    build: docker/frontend
-    ports:
-      - "3111:3000"
-    volumes:
-      - ./frontend:/app:rw
