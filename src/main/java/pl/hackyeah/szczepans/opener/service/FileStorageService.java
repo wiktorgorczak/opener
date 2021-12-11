@@ -1,5 +1,6 @@
 package pl.hackyeah.szczepans.opener.service;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import pl.hackyeah.szczepans.opener.controller.common.FileDto;
 import pl.hackyeah.szczepans.opener.exception.FileStorageException;
 import pl.hackyeah.szczepans.opener.properties.FileStorageProperties;
 
@@ -41,6 +43,26 @@ public class FileStorageService {
             // Copy file to the target location (Replacing existing file with the same name)
             Path targetLocation = this.fileStorageLocation.resolve(fileName);
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+
+            return fileName;
+        } catch (IOException ex) {
+            throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
+        }
+    }
+
+    public String storeFile(FileDto fileDto) {
+        // Normalize file name
+        String fileName = StringUtils.cleanPath(fileDto.getName());
+
+        try {
+            // Check if the file's name contains invalid characters
+            if(fileName.contains("..")) {
+                throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
+            }
+
+            // Copy file to the target location (Replacing existing file with the same name)
+            Path targetLocation = this.fileStorageLocation.resolve(fileName);
+            Files.copy(new ByteArrayInputStream(fileDto.getBytes()), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
             return fileName;
         } catch (IOException ex) {

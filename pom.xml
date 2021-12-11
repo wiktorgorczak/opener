@@ -53,22 +53,6 @@
 		</dependency>
 	</dependencies>
 
-	<repositories>
-		<repository>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<id>central</id>
-			<name>Maven Repository Switchboard</name>
-			<url>http://repo1.maven.org/maven2</url>
-		</repository>
-		<repository>
-			<id>cefdigital</id>
-			<name>cefdigital</name>
-			<url>https://ec.europa.eu/cefdigital/artifact/content/repositories/esignaturedss/</url>
-		</repository>
-	</repositories>
-
 	<build>
 		<plugins>
 			<plugin>
