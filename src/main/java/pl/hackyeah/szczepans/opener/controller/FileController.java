@@ -11,6 +11,8 @@ import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,6 +57,11 @@ public class FileController {
         return new ResponseEntity<ResponseTemplate<List<DocumentDTO>>>(ResponseTemplate.success(200, body), HttpStatus.CREATED);
 	}
 
+	@GetMapping(path = "/download/{id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+	public byte[] downloadFile(@PathVariable Integer id) throws IOException {
+		return fileStorageService.downloadFile(id);
+	}
+	
     @PostMapping(value = "/verify", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String, Object>> uploadFile(@RequestParam("file") String filePath) {
        Map<String, Object> body = certificateValidationService.validate(filePath);

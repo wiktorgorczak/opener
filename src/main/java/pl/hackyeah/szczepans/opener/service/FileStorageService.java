@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -59,7 +60,15 @@ public class FileStorageService {
 	public Document saveFile(File file) {
 		return dao.save(new Document(file.getName(), file.getAbsolutePath()));
 	}
-
+	
+	public byte[] downloadFile(Integer id) throws IOException {
+		Optional<Document> document = dao.findById(id);
+		if(document.isEmpty()) {
+			return null;
+		}
+		return Files.readAllBytes(Path.of(document.get().getPath()));
+	}
+	
     public String storeFile(FileDto fileDto) {
         // Normalize file name
         String fileName = StringUtils.cleanPath(fileDto.getName());
