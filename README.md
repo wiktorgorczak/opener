@@ -5,8 +5,15 @@ First you need to build the app:
 mvn clean install
 ```
 
+Then download node_modules, which you need to run frontend application:
+```
+cd frontend
+npm install
+```
+
 Then, build the docker images:
 ```
+cd ..
 docker-compose build
 ```
 
