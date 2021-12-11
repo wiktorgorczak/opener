@@ -17,6 +17,9 @@ public class FileDto {
     @JsonProperty
     private String name;
 
+    public FileDto() {
+    }
+
     public FileDto(File file) {
         try {
             this.bytes = Files.readAllBytes(file.toPath());

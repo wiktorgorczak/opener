@@ -1,6 +1,7 @@
 package pl.hackyeah.szczepans.opener.service;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -64,9 +65,15 @@ public class FileStorageService {
             Path targetLocation = this.fileStorageLocation.resolve(fileName);
             Files.copy(new ByteArrayInputStream(fileDto.getBytes()), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
-            return fileName;
+            return targetLocation.toString();
         } catch (IOException ex) {
             throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
         }
+    }
+
+    public File getFileFromPath(String pathFileWithHost) {
+        String pathFile = pathFileWithHost.replace("http://localhost:8081/", "");
+        Path path = this.fileStorageLocation.resolve(pathFile);
+        return path.toFile();
     }
 }
