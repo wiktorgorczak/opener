@@ -54,12 +54,13 @@ public class FileTypeDetector {
     	
     	TikaConfig config = TikaConfig.getDefaultConfig();
     	Detector detector = config.getDetector();
-
-    	TikaInputStream stream = TikaInputStream.get(copied);
-
-    	Metadata md = new Metadata();    	
+    	Metadata md = new Metadata();
     	
+    	logger.error(newPath);
+    	
+    	TikaInputStream stream = TikaInputStream.get(Path.of(newPath), md);    	
     	String det = detector.detect(stream, md).toString();
+    	
     	logger.error(det);
     	
         Optional<String> fileType = Optional.empty();
