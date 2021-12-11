@@ -24,8 +24,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+<<<<<<< HEAD
 import pl.hackyeah.szczepans.opener.controller.common.ResponseTemplate;
 import pl.hackyeah.szczepans.opener.controller.common.ServerResponseFactory;
+=======
+import pl.hackyeah.szczepans.opener.controller.dto.ResponseTemplate;
+import pl.hackyeah.szczepans.opener.controller.dto.ServerResponseFactory;
+>>>>>>> ee785e0c9ed0018960cd66c38fd74971d3729132
 
 @RestController
 public class TestController {

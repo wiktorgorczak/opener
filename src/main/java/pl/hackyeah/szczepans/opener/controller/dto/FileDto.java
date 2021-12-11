@@ -1,4 +1,4 @@
-package pl.hackyeah.szczepans.opener.controller.common;
+package pl.hackyeah.szczepans.opener.controller.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -16,6 +16,9 @@ public class FileDto {
 
     @JsonProperty
     private String name;
+
+    public FileDto() {
+    }
 
     public FileDto(File file) {
         try {

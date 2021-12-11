@@ -1,27 +1,34 @@
 package pl.hackyeah.szczepans.opener.service;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import pl.hackyeah.szczepans.opener.controller.common.FileDto;
+import pl.hackyeah.szczepans.opener.controller.dto.FileDto;
+import pl.hackyeah.szczepans.opener.dao.DocumentDAO;
 import pl.hackyeah.szczepans.opener.exception.FileStorageException;
+import pl.hackyeah.szczepans.opener.model.Document;
 import pl.hackyeah.szczepans.opener.properties.FileStorageProperties;
 
 @Service
 public class FileStorageService {
 
 	private final Path fileStorageLocation;
-
-	public FileStorageService(FileStorageProperties fileStorageProperties) {
-        this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir())
+	private final DocumentDAO dao;
+	
+	
+	public FileStorageService(FileStorageProperties fileStorageProperties, DocumentDAO dao) {
+        this.dao = dao;
+		this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir())
                 .toAbsolutePath().normalize();
         try {
             Files.createDirectories(this.fileStorageLocation);
@@ -49,7 +56,19 @@ public class FileStorageService {
             throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
         }
     }
-
+	
+	public Document saveFile(File file) {
+		return dao.save(new Document(file.getName(), file.getAbsolutePath()));
+	}
+	
+	public byte[] downloadFile(Integer id) throws IOException {
+		Optional<Document> document = dao.findById(id);
+		if(document.isEmpty()) {
+			return null;
+		}
+		return Files.readAllBytes(Path.of(document.get().getPath()));
+	}
+	
     public String storeFile(FileDto fileDto) {
         // Normalize file name
         String fileName = StringUtils.cleanPath(fileDto.getName());
@@ -64,9 +83,15 @@ public class FileStorageService {
             Path targetLocation = this.fileStorageLocation.resolve(fileName);
             Files.copy(new ByteArrayInputStream(fileDto.getBytes()), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
-            return fileName;
+            return targetLocation.toString();
         } catch (IOException ex) {
             throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
         }
+    }
+
+    public File getFileFromPath(String pathFileWithHost) {
+        String pathFile = pathFileWithHost.replace("http://localhost:8081/", "");
+        Path path = this.fileStorageLocation.resolve(pathFile);
+        return path.toFile();
     }
 }

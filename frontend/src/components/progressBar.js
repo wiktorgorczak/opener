@@ -22,15 +22,11 @@ const ProgressBar = (props) => {
     textAlign: 'right',
   }
 
-  const labelStyles = {
-    opacity: 0
-  }
-
   return (
     <div style={containerStyles}>
       <div style={fillerStyles}>
           <center>
-            <span style={labelStyles}>{`${completed}%`}</span>
+            <span></span>
         </center>
       </div>
     </div>

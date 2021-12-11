@@ -1,8 +1,11 @@
-package pl.hackyeah.szczepans.opener.controller.common;
+package pl.hackyeah.szczepans.opener.controller.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.File;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public class ValidationApiDto {
 
@@ -10,7 +13,7 @@ public class ValidationApiDto {
     private FileDto signedDocument;
 
     @JsonProperty
-    private FileDto originalDocument;
+    private List<FileDto> originalDocuments;
 
     @JsonProperty
     private String policy;
@@ -28,7 +31,7 @@ public class ValidationApiDto {
 
     public ValidationApiDto(File signedFile, File originalFile) {
         this.signedDocument = new FileDto(signedFile);
-        this.originalDocument = new FileDto(originalFile);
+        this.originalDocuments = Collections.singletonList(new FileDto(originalFile));
         this.tokenExtractionStrategy = "NONE";
     }
 }
