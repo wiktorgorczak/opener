@@ -10,6 +10,8 @@ services:
       - ./pdf/:/opt/opener/
     environment:
       - JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8001
+    networks:
+      - opener
 
   frontend:
     build: docker/frontend
@@ -17,3 +19,24 @@ services:
       - "3111:3000"
     volumes:
       - ./frontend:/app:rw
+  
+  db:
+    image: mysql:latest
+    restart: always
+    hostname: opener-db
+    container_name: opener-db
+    volumes:
+      - ./docker/db/:/docker-entrypoint-initdb.d/:ro
+    environment:
+      - MYSQL_ROOT_PASSWORD=mysecretpassword
+      - MYSQL_DATABASE=opener
+      - MYSQL_ADMIN=admin
+      - MYSQL_PASSWORD=mysecretpassword 
+    networks:
+      - opener
+
+networks:
+  opener:
+    ipam:
+      config:
+        - subnet: 192.168.49.0/24
