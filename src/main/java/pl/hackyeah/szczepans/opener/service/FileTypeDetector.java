@@ -52,17 +52,17 @@ public class FileTypeDetector {
     	
     	File copied = new File(newPath);
     	
-    	TikaConfig config = TikaConfig.getDefaultConfig();
-    	Detector detector = config.getDetector();
-    	Metadata md = new Metadata();
+//    	TikaConfig config = TikaConfig.getDefaultConfig();
+//    	Detector detector = config.getDetector();
+//    	Metadata md = new Metadata();
     	
     	logger.error(newPath);
     	
-    	TikaInputStream stream = TikaInputStream.get(Path.of(newPath), md);    	
-    	String det = detector.detect(stream, md).toString();
+//    	TikaInputStream stream = TikaInputStream.get(Path.of(newPath), md);
+//    	String det = detector.detect(stream, md).toString();
     	
-    	logger.error(det);
-    	
+//    	logger.error(det);
+
         Optional<String> fileType = Optional.empty();
         try {
             fileType = Optional.of(tika.detect(copied));
