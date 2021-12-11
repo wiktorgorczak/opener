@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import pl.hackyeah.szczepans.opener.controller.common.FileDto;
 import pl.hackyeah.szczepans.opener.controller.common.ValidationApiDto;
+import pl.hackyeah.szczepans.opener.properties.ValidationApiProperties;
 
 import java.io.File;
 
@@ -14,8 +15,8 @@ public class CertificateValidationClient {
     private final String validationApiUrl;
     private final RestTemplate restTemplate;
 
-    public CertificateValidationClient(@Value("${opener.certificate.url}") String validationApiUrl) {
-        this.validationApiUrl = validationApiUrl;
+    public CertificateValidationClient(ValidationApiProperties validationApiProperties) {
+        this.validationApiUrl = validationApiProperties.getHost();
         this.restTemplate = new RestTemplate();
     }
 
