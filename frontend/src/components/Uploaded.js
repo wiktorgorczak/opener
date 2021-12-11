@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Cell, Column, HeaderCell, Table } from 'rsuite-table'
-// import 'xml2js'
+import { Container } from 'rsuite'
 
 const Uploaded = (params) => {
 
@@ -40,21 +39,9 @@ const Uploaded = (params) => {
 
     return (
         <>
-            <Table 
-                // isTree
-                // defaultExpandAllRows
-                // bordered
-                // cellBordered
-                rowKey="id"
-                data={tableData}>
-            </Table>
-            <Column>
-                <HeaderCell>
-                    Imie
-                </HeaderCell>
-                <Cell dataKey="imie"/>
-
-            </Column>
+        <Container>
+            <h2>Siema</h2>
+        </Container>
         </>
     )
 }
