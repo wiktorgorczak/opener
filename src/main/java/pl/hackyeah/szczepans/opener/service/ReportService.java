@@ -1,5 +1,7 @@
 package pl.hackyeah.szczepans.opener.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -29,9 +31,28 @@ public class ReportService {
 		if(documentWrapped.isEmpty()) {
 			return null;
 		}
-		Document document = documentWrapped.get();
+		return generateReport(documentWrapped.get());
+	}
+	
+	public List<ReportDTO> generateReportForAll() {
+		List<ReportDTO> reports = new ArrayList<>();
+		for(Document doc : dao.findAll()) {
+			reports.add(generateReport(doc));
+		}
+		return reports;
+	}
+	
+	public List<ReportDTO> generateReportForMany(List<Integer> ids) {
+		List<ReportDTO> reports = new ArrayList<>();
+		for(Document doc : dao.findAllById(ids)) {
+			reports.add(generateReport(doc));
+		}
+		return reports;
+	}
+	
+	private ReportDTO generateReport(Document document) {
 		ReportDTO dto = new ReportDTO(document);
-		VerifyResultDto validationResult = certificateValidationService.validate(id);
+		VerifyResultDto validationResult = certificateValidationService.validate(document.getId());
 		dto.setValidationResult(validationResult.getValidationResult());
 		dto.setVerified(validationResult.getSignatureFound());
 		String program = mediaTypeProgramMapper.getProgramByMediaType(document.getType());
