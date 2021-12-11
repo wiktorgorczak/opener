@@ -64,7 +64,7 @@ public class FileController {
     }
 
     @PostMapping(value = "/verify/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ResponseTemplate<VerifyResultDto>> uploadFile(@PathVariable Integer id) {
+    public ResponseEntity<ResponseTemplate<VerifyResultDto>> verify(@PathVariable Integer id) {
         VerifyResultDto body = certificateValidationService.validate(id);
         return new ResponseEntity<>(ResponseTemplate.success(200, body), HttpStatus.OK);
     }
