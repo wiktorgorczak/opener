@@ -1,7 +1,8 @@
 package pl.hackyeah.szczepans.opener.service;
 
 import org.springframework.stereotype.Service;
-import pl.hackyeah.szczepans.opener.controller.common.FileDto;
+
+import pl.hackyeah.szczepans.opener.controller.dto.FileDto;
 
 import java.io.File;
 import java.util.HashMap;

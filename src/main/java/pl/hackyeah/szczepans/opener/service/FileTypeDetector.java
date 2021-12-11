@@ -38,34 +38,24 @@ public class FileTypeDetector {
     public Optional<String> checkFileType(File file) throws IOException {
     	String absoultePath = file.getAbsolutePath();    	    
     	String newPath = "";
-    	
+    	boolean toDelete = false;    	
     	for(String suffix : suffixes) {
     		if(absoultePath.endsWith(suffix)) {
     			newPath = pattern.matcher(absoultePath).replaceAll("");
         		Files.copy(Path.of(absoultePath), Path.of(newPath), StandardCopyOption.REPLACE_EXISTING);
+        		toDelete = true;
     		}
-    	}
-    	
+    	}    	
     	if(newPath.equals("")) {
     		newPath = absoultePath;
-    	}
-    	
-    	File copied = new File(newPath);
-    	
-//    	TikaConfig config = TikaConfig.getDefaultConfig();
-//    	Detector detector = config.getDetector();
-//    	Metadata md = new Metadata();
-    	
-    	logger.error(newPath);
-    	
-//    	TikaInputStream stream = TikaInputStream.get(Path.of(newPath), md);
-//    	String det = detector.detect(stream, md).toString();
-    	
-//    	logger.error(det);
-
+    	}    	
+    	File copied = new File(newPath);    	   	    	
         Optional<String> fileType = Optional.empty();
         try {
             fileType = Optional.of(tika.detect(copied));
+            if(toDelete) {
+            	Files.delete(Path.of(newPath));
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

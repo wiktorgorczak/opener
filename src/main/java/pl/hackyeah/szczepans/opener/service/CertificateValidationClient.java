@@ -9,8 +9,9 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
-import pl.hackyeah.szczepans.opener.controller.common.FileDto;
-import pl.hackyeah.szczepans.opener.controller.common.ValidationApiDto;
+
+import pl.hackyeah.szczepans.opener.controller.dto.FileDto;
+import pl.hackyeah.szczepans.opener.controller.dto.ValidationApiDto;
 import pl.hackyeah.szczepans.opener.properties.ValidationApiProperties;
 
 import java.io.File;

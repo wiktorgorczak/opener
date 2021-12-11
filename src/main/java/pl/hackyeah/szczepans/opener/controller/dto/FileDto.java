@@ -1,4 +1,4 @@
-package pl.hackyeah.szczepans.opener.controller.common;
+package pl.hackyeah.szczepans.opener.controller.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
