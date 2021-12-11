@@ -1,29 +1,34 @@
 import './App.css';
 import React from 'react';
 import { ReactComponent as Icon} from './components/uploadIcon.svg';
-import { Container, Header, Footer, Progress, Button } from 'rsuite'
+import { Container, Header, Footer, Button } from 'rsuite'
+import ProgressBar from "@ramonak/react-progress-bar";
 
 function App() {
 
   return (
     <Container className="mainContainer" align="center">
       <Header className="mainHeader">
-        <h2>Opener.gov</h2>
+        <h1>Opener.gov</h1>
       </Header>
       <Container>
         <Icon className="uploadIcon"/>
       </Container>
-      <Container>
+      <Container className="inputFileContainer">
         <input type="file"/>
-        <br/>
-        <Button>
+      </Container>
+      <Container>
+        <Button classname="goNextButton" size="medium" padding="50px">
           Upload!
         </Button>
       </Container>
-      <Container>
-        <Progress.Line />
+      <Container className="progressBarContainer">
+        <ProgressBar completed={33} customLabel=" " className="wrapper"
+          barContainerClassName="container"
+          completedClassName="barCompleted"
+          labelClassName="label"/>
       </Container>
-        <Footer>AUUUUU</Footer>
+        <Footer>Copyright © 2021, All Right Reserved</Footer>
     </Container>
   );
 }

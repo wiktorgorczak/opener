@@ -3,7 +3,7 @@
 }
 
 .mainHeader {
-  background-color: #282c34;
+  background-color: #293241;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,15 +13,75 @@
 }
 
 .mainContainer {
-  background-color: #61dafb !important;
+  background-color: #293241 !important;
 }
 
 body {
-  background-color: aquamarine;
+  background-color: #293241;
 }
 
 .uploadIcon {
-  width: 200px !important;
-  height: 200px !important;
+  width: 300px !important;
+  height: 300px !important;
   fill: #ffffff;
+}
+
+.inputFileContainer {
+  padding-bottom: 20px;
+}
+
+input[type=file]::file-selector-button {
+  height: 50px;
+  width: 120px;
+  font-size: 12pt;
+  font-family: 'Alegreya Sans', sans-serif;
+  border: 2px solid #3d5a80;
+  padding: .2em .4em;
+  border-radius: 7px;
+  background-color: #3d5a80;
+}
+
+input[type=file]::file-selector-button:hover {
+  background-color: #98c1d9;
+  border: 2px solid #00cec9;
+}
+
+.goNextButton {
+  height: 100px !important;
+  padding: 50px;
+}
+
+Footer {
+  background-color: #3d5a80 !important;
+  position: fixed;
+  font-family: 'Alegreya Sans', sans-serif;
+  padding: 10px;
+  width: 100%;
+  color: white;
+  bottom: 0 !important;
+  opacity: 0.6
+}
+
+.progressBarContainer {
+  background-color: #293241 !important;
+}
+
+.wrapper {
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-bottom: 5%;
+  padding-top: 5%;
+}
+
+.container {
+  background-color: #3d5a80;
+  height: 10px;
+  border-radius: 10px;
+}
+
+.barCompleted {
+  background-color: #98c1d9;
+  height: 10px;
+  border-radius: 10px;
+  width: 30%;
 }
