@@ -1,7 +1,6 @@
 package pl.hackyeah.szczepans.opener.service;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import pl.hackyeah.szczepans.opener.controller.dto.FileDto;
 import pl.hackyeah.szczepans.opener.dao.DocumentDAO;
-import pl.hackyeah.szczepans.opener.exception.FileStorageException;
+import pl.hackyeah.szczepans.opener.dao.exception.FileStorageException;
 import pl.hackyeah.szczepans.opener.model.Document;
 import pl.hackyeah.szczepans.opener.properties.FileStorageProperties;
 

@@ -1,4 +1,4 @@
-package pl.hackyeah.szczepans.opener.exception;
+package pl.hackyeah.szczepans.opener.dao.exception;
 
 public class FileStorageException extends RuntimeException {
     
