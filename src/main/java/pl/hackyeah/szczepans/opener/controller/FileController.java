@@ -22,6 +22,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/file")
+@CrossOrigin(origins = "http://localhost:3111")
 public class FileController {
 
     private final FileStorageService fileStorageService;

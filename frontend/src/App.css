@@ -1,5 +1,17 @@
+@import '~rsuite/dist/rsuite.min.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+
+}
+
+
 .App {
-  text-align: center;
+  /* text-align: center; */
 }
 
 .noselect {
@@ -12,25 +24,13 @@
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
-.upload {
-  height: 40px;
-  width: 100px;
-  margin-left: 2%;
-  font-size: 11pt;
-  font-family: 'Alegreya Sans', sans-serif;
-  font-weight: 5000;
-  border: 2px solid #98c1d9;
-  padding: .2em .4em;
-  border-radius: 7px;
-  background-color: #98c1d9;
-}
-
 .mainHeader {
   background-color: #293241;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
+  /* justify-content: center; */
   font-size: 80px;
   font-weight: 200;
   padding: 2.5%;
@@ -39,56 +39,11 @@
 
 .mainContainer {
   background-color: #293241 !important;
-  text-align: center;
+  /* text-align: center !important; */
 }
 
 body {
   background-color: #293241;
-}
-
-.uploadIcon {
-  width: 300px !important;
-  height: 300px !important;
-  fill: #ffffff;
-}
-
-.inputFileContainer {
-  padding-bottom: 20px;
-}
-
-input[type=file]::file-selector-button {
-  height: 40px;
-  width: 100px;
-  margin-right: 10%;
-  font-size: 11pt;
-  color: #ffffff;
-  font-family: 'Alegreya Sans', sans-serif;
-  font-weight: 5000;
-  border: 2px solid #3d5a80;
-  padding: .2em .4em;
-  border-radius: 7px;
-  background-color: #3d5a80;
-  transition: 0.2s;
-}
-
-input[type=file]::file-selector-button:hover {
-  background-color: #98c1d9;
-  border: 2px solid #98c1d9;
-  transition: 0.2s;
-  cursor: pointer;
-}
-
-input[type=file]::file-selector-button:active {
-  background-color: #2d4461;
-  border: #2d4461;
-  transition: 0.2s;
-  cursor: pointer;
-}
-
-input[type="button"].add-button {
-  height: 100px !important;
-  background-color: #98c1d9;
-  padding: 50px;
 }
 
 
