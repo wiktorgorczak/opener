@@ -8,7 +8,6 @@ import pl.hackyeah.szczepans.opener.controller.dto.ValidationApiDto;
 import pl.hackyeah.szczepans.opener.properties.ValidationApiProperties;
 
 import java.io.File;
-import java.util.Objects;
 import java.util.Optional;
 
 @Component
@@ -29,9 +28,7 @@ public class CertificateValidationClient {
             response = Optional.ofNullable(restTemplate.postForObject(validationApiUrl + "/services/rest/validation/getOriginalDocuments", dto, FileDto[].class))
                                .map(res -> res[0]);
         } catch (HttpServerErrorException e) {
-            if (!Objects.equals(e.getMessage(), "Signature Id cannot be null!")) {
-                e.printStackTrace();
-            }
+            // can't check signature
         }
         return response;
     }
