@@ -1,5 +1,6 @@
 package pl.hackyeah.szczepans.opener.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -41,5 +42,20 @@ public class ReportController {
     public ResponseEntity<ResponseTemplate<List<ReportDTO>>> generateReportForMany(@RequestParam List<Integer> ids) {
         List<ReportDTO> body = reportService.generateReportForMany(ids);
         return new ResponseEntity<>(ResponseTemplate.success(HttpStatus.OK.value(), body), HttpStatus.OK);
+    }
+    
+    @GetMapping(value = "/{id}/pdf", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public byte[] generateReportForManyPDF(@PathVariable Integer id) throws IOException {        
+        return reportService.reportForOnePDF(id);
+    }
+    
+    @GetMapping(value = "/many/pdf", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public byte[] generateReportForManyPDF(@RequestParam List<Integer> ids) throws IOException {        
+        return reportService.reportForManyPDF(ids);
+    }
+    
+    @GetMapping(value = "/all/pdf", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public byte[] generateReportForAllPDF() throws IOException {        
+        return reportService.reportForAllPDF();
     }
 }
