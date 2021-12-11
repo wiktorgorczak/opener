@@ -31,15 +31,18 @@ public class FileTypeDetector {
 	private List<String> suffixes;
 	
     private final Tika tika;
+    private final MediaTypeSuffixMapper mapper;
 
-    public FileTypeDetector() {
+    public FileTypeDetector(MediaTypeSuffixMapper mapper) {
         this.tika = new Tika();
+        this.mapper = mapper;
     }
 
     public Triple<String, String, String> checkFileType(File file) throws IOException {
     	String absoultePath = file.getAbsolutePath();    	    
     	String newPath = "";
     	String expectedSuffix = "";
+    	String realSuffix = null;
     	boolean toDelete = false;    	
     	for(String suffix : suffixes) {
     		if(absoultePath.endsWith(suffix)) {
@@ -60,10 +63,13 @@ public class FileTypeDetector {
             if(toDelete) {
             	Files.delete(Path.of(newPath));
             }
+            if(fileType.isPresent()) {
+            	realSuffix = mapper.getSuffixByMediaType(fileType.get());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Triple<String, String, String> result = Triple.of(fileType.orElse("unknown"), expectedSuffix, null);
+        Triple<String, String, String> result = Triple.of(fileType.orElse("unknown"), expectedSuffix, realSuffix);
         return result;
     }
 }
