@@ -8,17 +8,17 @@ function App() {
 
   return (
     <Container className="mainContainer" align="center">
-      <Header className="mainHeader">
-        <h1>Opener.gov</h1>
+      <Header className="mainHeader noselect">
+        Opener.gov
       </Header>
       <Container>
         <Icon className="uploadIcon"/>
       </Container>
-      <Container className="inputFileContainer">
+      <Container className="inputFileContainer noselect">
         <input type="file"/>
       </Container>
       <Container>
-        <Button classname="goNextButton" size="medium" padding="50px">
+        <Button classname="goNextButton noselect" size="medium" padding="50px">
           Upload!
         </Button>
       </Container>
@@ -28,7 +28,7 @@ function App() {
           completedClassName="barCompleted"
           labelClassName="label"/>
       </Container>
-        <Footer>Copyright © 2021, All Right Reserved</Footer>
+        <Footer classname="noselect">Copyright © 2021, All Right Reserved</Footer>
     </Container>
   );
 }
