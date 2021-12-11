@@ -1,10 +1,7 @@
 package pl.hackyeah.szczepans.opener.controller.dto;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.TimeZone;
 
 import pl.hackyeah.szczepans.opener.model.Document;
 
@@ -19,6 +16,7 @@ public class DocumentDTO {
 	private String realSuffix;
 	private Boolean verified;
 	private ZonedDateTime uploadDate;
+	private Long size;
 	
 	public DocumentDTO() { }
 	
@@ -29,7 +27,8 @@ public class DocumentDTO {
 		this.expectedSuffix = document.getExpectedSuffix();
 		this.realSuffix = document.getRealSuffix();
 		this.verified = document.getVerified();
-		this.uploadDate = ZonedDateTime.of(document.getUploadDate(), zoneId);			
+		this.uploadDate = ZonedDateTime.of(document.getUploadDate(), zoneId);
+		this.size = document.getSize();
 	}
 	
 	public Integer getId() {
@@ -74,5 +73,10 @@ public class DocumentDTO {
 	public void setUploadDate(ZonedDateTime uploadDate) {
 		this.uploadDate = uploadDate;
 	}
-	
+	public Long getSize() {
+		return size;
+	}
+	public void setSize(Long size) {
+		this.size = size;
+	}
 }

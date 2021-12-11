@@ -42,14 +42,18 @@ public class Document {
 	@Column(name = "pathToUnsignedFile", nullable = true)
 	private String pathToUnsignedFile;
 	
+	@Column(name = "size", nullable = false)
+	private Long size;
+	
 	public Document() {	}
 
-	public Document(String name, String path, String type, String expectedSuffix, String realSuffix) {
+	public Document(String name, String path, String type, String expectedSuffix, String realSuffix, long size) {
 		this.name = name;
 		this.path = path;
 		this.type = type;		
 		this.expectedSuffix = expectedSuffix;
 		this.realSuffix = realSuffix;
+		this.size = size;
 		this.verified = false;
 		this.uploadDate = LocalDateTime.now();
 		this.pathToUnsignedFile = null;
@@ -125,5 +129,13 @@ public class Document {
 
 	public void setPathToUnsignedFile(String pathToUnsignedFile) {
 		this.pathToUnsignedFile = pathToUnsignedFile;
+	}
+
+	public Long getSize() {
+		return size;
+	}
+
+	public void setSize(Long size) {
+		this.size = size;
 	}
 }

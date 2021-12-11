@@ -46,10 +46,10 @@ public class FileController {
             Triple<String, String, String> detected = fileTypeDetector.checkFileType(createdFile);
             String type = detected.getLeft();
             String expectedSuffix = detected.getMiddle();
-            String realSuffix = detected.getRight();
+            String realSuffix = detected.getRight();                        
             
             Document document = new Document(createdFile.getName(), createdFile.getAbsolutePath(),
-            		type, expectedSuffix, realSuffix);
+            		type, expectedSuffix, realSuffix, createdFile.length());
             
             DocumentDTO dto = new DocumentDTO(fileStorageService.saveDocument(document));           
             body.add(dto);

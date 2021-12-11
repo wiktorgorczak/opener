@@ -7,7 +7,8 @@ CREATE TABLE `documents` (
   `realSuffix` varchar(7) CHARACTER SET utf8 COLLATE utf8_bin,
   `verified` tinyint(1) NOT NULL,
   `uploadDate` timestamp NOT NULL,
-  `pathToUnsignedFile` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin
+  `pathToUnsignedFile` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin,
+  `size` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
 
 --
