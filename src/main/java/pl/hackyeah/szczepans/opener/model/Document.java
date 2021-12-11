@@ -24,23 +24,35 @@ public class Document {
 	@Column(name = "path", nullable = false, unique = true)
 	private String path;
 
+	@Column(name = "type", nullable = false)
 	private String type;
 	
-	private String realSuffix;
-	
+	@Column(name = "expectedSuffix", nullable = true)
 	private String expectedSuffix;
 	
+	@Column(name = "realSuffix", nullable = true)
+	private String realSuffix;		
+	
+	@Column(name = "verified", nullable = false)
 	private Boolean verified;
 	
+	@Column(name = "uploadDate", nullable = false)
 	private LocalDateTime uploadDate;
 	
+	@Column(name = "pathToUnsignedFile", nullable = true)
 	private String pathToUnsignedFile;
 	
 	public Document() {	}
 
-	public Document(String name, String path) {
+	public Document(String name, String path, String type, String expectedSuffix, String realSuffix) {
 		this.name = name;
 		this.path = path;
+		this.type = type;		
+		this.expectedSuffix = expectedSuffix;
+		this.realSuffix = realSuffix;
+		this.verified = false;
+		this.uploadDate = LocalDateTime.now();
+		this.pathToUnsignedFile = null;
 	}
 	
 	public Integer getId() {

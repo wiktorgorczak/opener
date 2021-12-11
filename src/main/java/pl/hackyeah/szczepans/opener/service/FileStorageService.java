@@ -57,8 +57,12 @@ public class FileStorageService {
         }
     }
 	
-	public Document saveFile(File file) {
-		return dao.save(new Document(file.getName(), file.getAbsolutePath()));
+//	public Document saveFile(File file) {
+//		return dao.save(new Document(file.getName(), file.getAbsolutePath()));
+//	}
+	
+	public Document saveDocument(Document document) {
+		return dao.save(document);
 	}
 	
 	public byte[] downloadFile(Integer id) throws IOException {

@@ -1,5 +1,6 @@
 package pl.hackyeah.szczepans.opener.service;
 
+import org.apache.commons.lang3.tuple.Triple;
 import org.apache.tika.Tika;
 import org.apache.tika.config.TikaConfig;
 import org.apache.tika.detect.Detector;
@@ -35,15 +36,18 @@ public class FileTypeDetector {
         this.tika = new Tika();
     }
 
-    public Optional<String> checkFileType(File file) throws IOException {
+    public Triple<String, String, String> checkFileType(File file) throws IOException {
     	String absoultePath = file.getAbsolutePath();    	    
     	String newPath = "";
+    	String expectedSuffix = "";
     	boolean toDelete = false;    	
     	for(String suffix : suffixes) {
     		if(absoultePath.endsWith(suffix)) {
     			newPath = pattern.matcher(absoultePath).replaceAll("");
         		Files.copy(Path.of(absoultePath), Path.of(newPath), StandardCopyOption.REPLACE_EXISTING);
         		toDelete = true;
+        		expectedSuffix = suffix;
+        		break;
     		}
     	}    	
     	if(newPath.equals("")) {
@@ -59,6 +63,7 @@ public class FileTypeDetector {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return fileType;
+        Triple<String, String, String> result = Triple.of(fileType.orElse("unknown"), expectedSuffix, null);
+        return result;
     }
 }
