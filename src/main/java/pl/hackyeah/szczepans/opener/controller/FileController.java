@@ -1,6 +1,10 @@
 package pl.hackyeah.szczepans.opener.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
@@ -14,28 +18,35 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import pl.hackyeah.szczepans.opener.service.FileStorageService;
+import pl.hackyeah.szczepans.opener.service.FileTypeDetector;
 
 @RestController
 @RequestMapping("/api/file")
 public class FileController {
 
 	private final FileStorageService fileStorageService;
+	private final FileTypeDetector fileTypeDetector;
 	
-	public FileController(FileStorageService fileStorageService) {
+	public FileController(FileStorageService fileStorageService, FileTypeDetector fileTypeDetector) {
 		this.fileStorageService = fileStorageService;
+		this.fileTypeDetector = fileTypeDetector;
 	}
 	
 	@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Map<String, String>> uploadFile(@RequestParam("file") MultipartFile file) {
-		String fileName = fileStorageService.storeFile(file);
+	public ResponseEntity<Map<String, String>> uploadFile(@RequestParam("files") List<MultipartFile> files) throws IOException {
+		Map<String, String> body = new HashMap<>();
+		int i = 0;
+		for(MultipartFile file : files) {
+			Path pathToFile = fileStorageService.storeFile(file);
+			File createdFile = pathToFile.toFile();
 
-        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()                
-                .path(fileName)
-                .toUriString();
-        
-        Map<String, String> body = new HashMap<>();
-        body.put("path", fileDownloadUri);
-        body.put("content-type", file.getContentType());
+	        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()                
+	                .path(createdFile.getName())
+	                .toUriString();
+	        i++;  
+	        body.put("path_" + String.valueOf(i), fileDownloadUri);
+	        body.put("content-type_" + String.valueOf(i), fileTypeDetector.checkFileType(createdFile).orElse("Unknown"));
+		}
         
         return new ResponseEntity<Map<String,String>>(body, HttpStatus.CREATED);
 	}
