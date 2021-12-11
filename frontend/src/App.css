@@ -2,37 +2,104 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.upload {
+  height: 40px;
+  width: 100px;
+  margin-left: 2%;
+  font-size: 11pt;
+  font-family: 'Alegreya Sans', sans-serif;
+  font-weight: 5000;
+  border: 2px solid #98c1d9;
+  padding: .2em .4em;
+  border-radius: 7px;
+  background-color: #98c1d9;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.mainHeader {
+  background-color: #293241;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 80px;
+  font-weight: 200;
+  padding: 2.5%;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.mainContainer {
+  background-color: #293241 !important;
+  text-align: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+  background-color: #293241;
+}
+
+.uploadIcon {
+  width: 300px !important;
+  height: 300px !important;
+  fill: #ffffff;
+}
+
+.inputFileContainer {
+  padding-bottom: 20px;
+}
+
+input[type=file]::file-selector-button {
+  height: 40px;
+  width: 100px;
+  margin-right: 10%;
+  font-size: 11pt;
+  color: #ffffff;
+  font-family: 'Alegreya Sans', sans-serif;
+  font-weight: 5000;
+  border: 2px solid #3d5a80;
+  padding: .2em .4em;
+  border-radius: 7px;
+  background-color: #3d5a80;
+  transition: 0.2s;
+}
+
+input[type=file]::file-selector-button:hover {
+  background-color: #98c1d9;
+  border: 2px solid #98c1d9;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+input[type=file]::file-selector-button:active {
+  background-color: #1f3b4b;
+  border: 2px solid #1f3b4b;
+  transition: 0.2s;
+}
+
+input[type=file]::file-selector-
+
+input[type="button"].add-button {
+  height: 100px !important;
+  background-color: #98c1d9;
+  padding: 50px;
+}
+
+
+Footer {
+  background-color: #3d5a80 !important;
+  position: fixed;
+  font-family: 'Alegreya Sans', sans-serif;
+  padding: 10px;
+  width: 100%;
+  color: white;
+  bottom: 0 !important;
+  opacity: 0.6
 }

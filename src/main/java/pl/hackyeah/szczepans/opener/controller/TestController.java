@@ -58,7 +58,7 @@ public class TestController {
 				streamParser.parse();
 				List<Object> tokens = streamParser.getTokens();
 				String s = "";
-				PDPageContentStream.AppendMode.OVERWRITE;
+//				PDPageContentStream.AppendMode.OVERWRITE;
 				for(Object token : tokens) {
 					if(token instanceof Operator) {
 						Operator op = (Operator)token;

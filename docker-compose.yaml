@@ -3,9 +3,14 @@ services:
   backend:
     build: docker/backend
     ports:
-      - "8111:8080"
+      - 8111:8080
+      - 8001:8001
     volumes:
       - ./target/opener-0.0.1-SNAPSHOT.war:/opt/opener.war:ro
+      - ./pdf/:/opt/opener/
+    environment:
+      - JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8001
+
   frontend:
     build: docker/frontend
     ports:
