@@ -1,18 +1,29 @@
 package pl.hackyeah.szczepans.opener.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.mvc.condition.ProducesRequestCondition;
+import pl.hackyeah.szczepans.opener.controller.dto.ReportDTO;
+import pl.hackyeah.szczepans.opener.controller.dto.ResponseTemplate;
+import pl.hackyeah.szczepans.opener.service.ReportService;
 
 @RestController
 @RequestMapping("/api/report")
 public class ReportController {
 
-	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public void generateReportForOne(@PathVariable Integer id) {
-		
-	}
+    private final ReportService reportService;
+
+    public ReportController(ReportService reportService) {
+        this.reportService = reportService;
+    }
+
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ResponseTemplate<ReportDTO>> generateReportForOne(@PathVariable Integer id) {
+        ReportDTO body = reportService.generateReportForOne(id);
+        return new ResponseEntity<>(ResponseTemplate.success(200, body), HttpStatus.OK);
+    }
 }

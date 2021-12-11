@@ -16,6 +16,8 @@ private static final ZoneId zoneId = ZoneId.systemDefault();
 	private Boolean verified;
 	private ZonedDateTime uploadDate;
 	private Long size;
+	private Object validationResult;
+	private String program;
 	
 	public ReportDTO() { }
 	
@@ -77,5 +79,17 @@ private static final ZoneId zoneId = ZoneId.systemDefault();
 	}
 	public void setSize(Long size) {
 		this.size = size;
+	}
+	public Object getValidationResult() {
+		return validationResult;
+	}
+	public void setValidationResult(Object validationResult) {
+		this.validationResult = validationResult;
+	}
+	public String getProgram() {
+		return program;
+	}
+	public void setProgram(String program) {
+		this.program = program;
 	}
 }
