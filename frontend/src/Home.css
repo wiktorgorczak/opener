@@ -1,0 +1,63 @@
+.homeContent {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.upload {
+    height: 40px;
+    width: 100px;
+    /* margin-left: 2%; */
+    font-size: 11pt;
+    font-family: 'Alegreya Sans', sans-serif;
+    font-weight: 5000;
+    border: 2px solid #98c1d9;
+    padding: .2em .4em;
+    border-radius: 7px;
+    background-color: #98c1d9;
+}
+
+
+.uploadIcon {
+    width: 350px !important;
+    height: 350px !important;
+    fill: #ffffff;
+}
+
+.inputFileContainer {   
+    padding-bottom: 20px;
+}
+
+input[type=file]::file-selector-button {
+    height: 40px;
+    width: 100px;
+    font-size: 11pt;
+    /*margin-left: 35%;*/
+    color: #ffffff;
+    font-family: 'Alegreya Sans', sans-serif;
+    font-weight: 5000;
+    border: 2px solid #3d5a80;
+    padding: .2em .4em;
+    border-radius: 7px;
+    background-color: #3d5a80;
+    transition: 0.2s;
+}
+      
+input[type=file]::file-selector-button:hover {
+    background-color: #98c1d9;
+    border: 2px solid #98c1d9;
+    transition: 0.2s;
+    cursor: pointer;
+}
+      
+input[type=file]::file-selector-button:active {
+    background-color: #2d4461;
+    border: #2d4461;
+    transition: 0.2s;
+    cursor: pointer;
+}
+      
+input[type="button"].add-button {
+    height: 100px !important;
+    background-color: #98c1d9;
+    padding: 50px;
+}
