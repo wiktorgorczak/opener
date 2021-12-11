@@ -12,6 +12,19 @@
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
+.upload {
+  height: 40px;
+  width: 100px;
+  margin-left: 2%;
+  font-size: 11pt;
+  font-family: 'Alegreya Sans', sans-serif;
+  font-weight: 5000;
+  border: 2px solid #98c1d9;
+  padding: .2em .4em;
+  border-radius: 7px;
+  background-color: #98c1d9;
+}
+
 .mainHeader {
   background-color: #293241;
   display: flex;
@@ -43,10 +56,12 @@ body {
 }
 
 input[type=file]::file-selector-button {
-  height: 50px;
-  width: 120px;
-  font-size: 12pt;
+  height: 40px;
+  width: 100px;
+  margin-right: 10%;
+  font-size: 11pt;
   font-family: 'Alegreya Sans', sans-serif;
+  font-weight: 5000;
   border: 2px solid #3d5a80;
   padding: .2em .4em;
   border-radius: 7px;
@@ -55,13 +70,15 @@ input[type=file]::file-selector-button {
 
 input[type=file]::file-selector-button:hover {
   background-color: #98c1d9;
-  border: 2px solid #00cec9;
+  border: 2px solid #98c1d9;
 }
 
-.goNextButton {
+input[type="button"].add-button {
   height: 100px !important;
+  background-color: #98c1d9;
   padding: 50px;
 }
+
 
 Footer {
   background-color: #3d5a80 !important;
@@ -72,28 +89,4 @@ Footer {
   color: white;
   bottom: 0 !important;
   opacity: 0.6
-}
-
-.progressBarContainer {
-  background-color: #293241 !important;
-}
-
-.wrapper {
-  padding-left: 20%;
-  padding-right: 20%;
-  padding-bottom: 5%;
-  padding-top: 5%;
-}
-
-.container {
-  background-color: #3d5a80;
-  height: 10px;
-  border-radius: 10px;
-}
-
-.barCompleted {
-  background-color: #98c1d9;
-  height: 10px;
-  border-radius: 10px;
-  width: 30%;
 }
