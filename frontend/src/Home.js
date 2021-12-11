@@ -1,14 +1,13 @@
 import './App.css';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ReactComponent as Icon} from './components/uploadIcon.svg';
-import { Container, Header, Footer, Table } from 'rsuite'
+import { Container } from 'rsuite'
 import ProgressBar from './components/progressBar'
 
 const Home = () => {
     const [selectedFile, setSelectedFile] = useState(null);
-  const [completed, setCompleted] = useState(33);
-  const [uploaded, setUploaded] = useState(false);
-  //const [isRaportReady, setRaportReady] = useState(false)
+    const [completed, setCompleted] = useState(33);
 
   return (
     <div className="home">
@@ -26,7 +25,11 @@ const Home = () => {
             }}
             />
             {
-            selectedFile && <input className="upload noselect" type="button" value="Upload!"/> 
+            selectedFile && (
+                <Link to="/generateRaport">
+                    <input className="upload noselect" type="button" value="Upload!"/>
+                </Link>
+                )
             }
         </Container>
         <Container>

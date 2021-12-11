@@ -1,5 +1,6 @@
 package pl.hackyeah.szczepans.opener.controller;
 
+import org.apache.commons.lang3.tuple.Triple;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import pl.hackyeah.szczepans.opener.controller.dto.DocumentDTO;
 import pl.hackyeah.szczepans.opener.controller.dto.ResponseTemplate;
 import pl.hackyeah.szczepans.opener.controller.dto.VerifyResultDto;
+import pl.hackyeah.szczepans.opener.model.Document;
 import pl.hackyeah.szczepans.opener.service.CertificateValidationService;
 import pl.hackyeah.szczepans.opener.service.FileStorageService;
 import pl.hackyeah.szczepans.opener.service.FileTypeDetector;
@@ -40,13 +42,20 @@ public class FileController {
         for (MultipartFile file : files) {
             Path pathToFile = fileStorageService.storeFile(file);
             File createdFile = pathToFile.toFile();
-
-            DocumentDTO dto = new DocumentDTO(fileStorageService.saveFile(createdFile),
-                    fileTypeDetector.checkFileType(createdFile).orElse("unknown"));
+            
+            Triple<String, String, String> detected = fileTypeDetector.checkFileType(createdFile);
+            String type = detected.getLeft();
+            String expectedSuffix = detected.getMiddle();
+            String realSuffix = detected.getRight();
+            
+            Document document = new Document(createdFile.getName(), createdFile.getAbsolutePath(),
+            		type, expectedSuffix, realSuffix);
+            
+            DocumentDTO dto = new DocumentDTO(fileStorageService.saveDocument(document));           
             body.add(dto);
         }
 
-        return new ResponseEntity<ResponseTemplate<List<DocumentDTO>>>(ResponseTemplate.success(200, body), HttpStatus.CREATED);
+        return new ResponseEntity<>(ResponseTemplate.success(HttpStatus.CREATED.value(), body), HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/download/{id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
