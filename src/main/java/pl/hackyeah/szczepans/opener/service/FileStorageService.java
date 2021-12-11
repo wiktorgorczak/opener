@@ -69,7 +69,7 @@ public class FileStorageService {
 		return Files.readAllBytes(Path.of(document.get().getPath()));
 	}
 	
-    public String storeFile(FileDto fileDto) {
+    public Path storeFile(FileDto fileDto) {
         // Normalize file name
         String fileName = StringUtils.cleanPath(fileDto.getName());
 
@@ -83,15 +83,9 @@ public class FileStorageService {
             Path targetLocation = this.fileStorageLocation.resolve(fileName);
             Files.copy(new ByteArrayInputStream(fileDto.getBytes()), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
-            return targetLocation.toString();
+            return targetLocation;
         } catch (IOException ex) {
             throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
         }
-    }
-
-    public File getFileFromPath(String pathFileWithHost) {
-        String pathFile = pathFileWithHost.replace("http://localhost:8081/", "");
-        Path path = this.fileStorageLocation.resolve(pathFile);
-        return path.toFile();
     }
 }
