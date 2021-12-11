@@ -1,6 +1,10 @@
 package pl.hackyeah.szczepans.opener.service;
 
 import org.apache.tika.Tika;
+import org.apache.tika.config.TikaConfig;
+import org.apache.tika.detect.Detector;
+import org.apache.tika.io.TikaInputStream;
+import org.apache.tika.metadata.Metadata;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -47,6 +51,16 @@ public class FileTypeDetector {
     	}
     	
     	File copied = new File(newPath);
+    	
+    	TikaConfig config = TikaConfig.getDefaultConfig();
+    	Detector detector = config.getDetector();
+
+    	TikaInputStream stream = TikaInputStream.get(copied);
+
+    	Metadata md = new Metadata();    	
+    	
+    	String det = detector.detect(stream, md).toString();
+    	logger.error(det);
     	
         Optional<String> fileType = Optional.empty();
         try {

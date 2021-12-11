@@ -38,7 +38,7 @@ public class FileController {
 	}
 	
 	@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Map<String, String>> uploadFile(@RequestParam("files") List<MultipartFile> files) throws IOException {
+	public ResponseEntity<Map<String, String>> uploadFiles(@RequestParam("files") List<MultipartFile> files) throws IOException {
 		Map<String, String> body = new HashMap<>();
 		int i = 0;
 		for(MultipartFile file : files) {
