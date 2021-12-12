@@ -44,7 +44,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/file")
-@CrossOrigin(origins = "http://localhost:3111")
+//@CrossOrigin(origins = "http://localhost:3111")
 public class FileController {
 
     private final FileStorageService fileStorageService;
@@ -101,5 +101,14 @@ public class FileController {
     @GetMapping(path = "/anonymise/{id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public byte[] downloadAnonymisedFile(@PathVariable Integer id) throws IOException {
         return fileStorageService.downloadAnonymisedFile(id);
+    }
+    
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ResponseTemplate<List<DocumentDTO>>> findAll() {
+    	List<DocumentDTO> body = new ArrayList<>();
+    	for(Document doc : fileStorageService.findAll()) {
+    		body.add(new DocumentDTO(doc));
+    	}    	
+    	return new ResponseEntity<>(ResponseTemplate.success(HttpStatus.OK.value(), body), HttpStatus.OK);
     }
 }
