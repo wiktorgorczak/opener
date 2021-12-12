@@ -1,0 +1,5 @@
+4 maszyny jednorodne
+
+plik wejściowy:
+n - liczba instancji
+b1 b2 b3 b4 - ile maszyna bk jest szybsza względem najwolniejszej b, np. b1 = 1 (najwolniejsza) b2=3 b3 = 3 b4 = 6

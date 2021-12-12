@@ -44,12 +44,14 @@
 
 body {
   background-color: #293241;
+  margin-bottom: 42px;
 }
 
 
 Footer {
   background-color: #3d5a80 !important;
   position: fixed;
+  margin-top: auto;
   font-family: 'Alegreya Sans', sans-serif;
   padding: 10px;
   width: 100%;
