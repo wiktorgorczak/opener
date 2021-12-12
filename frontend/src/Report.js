@@ -15,7 +15,6 @@ const Report = (props) => {
         })
     }, [])
     
-    console.log(report)
     return (
         <>
         {/*
@@ -30,15 +29,16 @@ const Report = (props) => {
         "validationResult": null,
         "program": "Adobe Reader"
         */}
-        {report.map((r) => (
-        <>
-        <tr>
-            <td>ID</td>
-            <td>{r.id}</td>
-        </tr>
-        </>
-        ))}
-            <h1>{params.id}</h1>
+        <Table data={Object.entries(report).map((e) => ({"key": e[0], "value": e[1]}))}>
+            <Column width={400}>
+                <HeaderCell>Key</HeaderCell>
+                <Cell dataKey="key"/>
+            </Column>
+            <Column width={400}>
+                <HeaderCell>Value</HeaderCell>
+                <Cell dataKey="value"/>
+            </Column>
+        </Table>
         </>
     )
 }
