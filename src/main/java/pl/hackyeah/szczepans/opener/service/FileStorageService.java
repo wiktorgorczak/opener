@@ -161,4 +161,8 @@ public class FileStorageService {
         pdfDoc.close();
         return document;
     }
+    
+    public List<Document> findAll() {
+    	return dao.findAll();
+    }
 }
