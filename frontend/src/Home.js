@@ -2,7 +2,7 @@ import './Home.css';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Icon} from './components/uploadIcon.svg';
-import { Container } from 'rsuite'
+import { Button, Container } from 'rsuite'
 import ProgressBar from './components/progressBar'
 import axios from 'axios'
 
@@ -23,10 +23,7 @@ const Home = () => {
         const formData = new FormData()
         Array.from(selectedFile).forEach((f) => {formData.append("files", f)})
         axios.post('http://localhost:8111/api/file', formData, config).then((result) => {
-            console.log(result)
-            const uploaded = []
-            result.data.payload.forEach((f) => { uploaded.push(f) })
-            setUploadedIds(uploaded.map((f) =>  f.id ))
+            result.data.payload.forEach((f) => { uploadedIds.push(f.id) })
             setCompleted(true)
         }).catch((e) => {
             alert(e)
@@ -59,6 +56,12 @@ const Home = () => {
                 selectedFile &&
                     <input className="upload noselect" onClick={handleUpload} type="button" value="Upload!" />
                 )
+            }
+            
+            {
+                uploadedIds.map((id) => (<Link key={id} to={'/report/' + id}>
+                    <Button>{'Report for upload: ' + id}</Button>
+                    </Link>))
             }
         </Container>
     </div>
