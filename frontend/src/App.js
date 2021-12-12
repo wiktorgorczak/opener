@@ -15,8 +15,8 @@ function App() {
         </Header>
         <Routes>
           <Route exact path="/" element={<Home/>}/>
-          <Route exact path="/generateReport" element={<Uploaded/>}/>
           <Route exact path="/report/:id" element={<Report/>}/>
+          <Route exact path="/generateReport/:id" element={<Uploaded/>}/>
         </Routes>
           <Footer>Copyright © 2021, All Right Reserved</Footer>
       </Container>

@@ -3,14 +3,21 @@ import React, { useEffect, useState } from 'react'
 import { Container } from 'rsuite'
 import { Cell, Column, HeaderCell, Table } from 'rsuite-table'
 import JSONTree from 'react-json-tree'
+import axios from 'axios';
+import { useParams } from 'react-router';
 // import { Cell, Column, HeaderCell } from 'rsuite-table';
 
-const Uploaded = (params) => {
+const Uploaded = () => {
     const [tableData, setTableData] = useState([])
+    const params = useParams()
 
     useEffect(() => {
         let xml2js = require('xml2js')
         let parser = new xml2js.Parser()
+        axios.get('http://localhost:3111/api/file/download/' + params.id).then((res) => {
+            console.log(res)
+        })
+
         parser.parseString(`<Naglowek>
         <KodFormularza kodPodatku="PIT" kodSystemowy="PIT-11 (25)" rodzajZobowiazania="Z" wersjaSchemy="1-0E">PIT-11</KodFormularza>
         <WariantFormularza>25</WariantFormularza>

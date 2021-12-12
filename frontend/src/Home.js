@@ -11,7 +11,10 @@ const Home = () => {
     const [completed, setCompleted] = useState(0);
     const [uploadedIds, setUploadedIds] = useState([])
 
-
+    const buttonStyle = {
+        'margin-top': '10px',
+        'margin-bottom': '10px'
+    }
     const handleUpload = () => {
         console.log(selectedFile)
         const config = {
@@ -60,7 +63,7 @@ const Home = () => {
             
             {
                 uploadedIds.map((id) => (<Link key={id} to={'/report/' + id}>
-                    <Button>{'Report for upload: ' + id}</Button>
+                    <Button style={buttonStyle}>{'Report for upload: ' + id}</Button>
                     </Link>))
             }
         </Container>
